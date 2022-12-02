@@ -4,26 +4,39 @@ defmodule AdventOfCode.Day02Test do
   import AdventOfCode.Day02
   import AdventOfCode.RockPaperScissorsParser
 
-  @tag :skip
   test "part1" do
     input =
       """
-      A X
-      B Y
+      A Y
+      B X
       C Z
       """
 
     result = part1(input)
 
-    assert result == 9
+    assert result == 15
   end
 
-  @tag :skip
   test "part2" do
-    input = nil
+    input =
+      """
+      A Y
+      B X
+      C Z
+      C Z
+      A X
+      B Z
+      """
+    # rock scissors 4 / DRAW
+    # paper paper 1 / LOSE
+    # scissors rock 7 / WIN
+    # scissors rock 7 / WIN
+    # rock scissors 3 / LOSE
+    # paper scissors 9 / WIN
+
     result = part2(input)
 
-    assert result
+    assert result == 31
   end
 
   test "RockPaperScissorsParser" do
