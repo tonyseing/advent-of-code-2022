@@ -21,9 +21,25 @@ defmodule AdventOfCode.Day03 do
     end) |> Enum.sum()
   end
 
-  def part2(_args) do
+  def part2(input) do
+    {:ok, group_rucksacks} = parse_groups(input)
+    Enum.map(group_rucksacks, fn group_rucksack ->
+        [ruck_1, ruck_2, ruck_3] = group_rucksack
+        common_letters = ruck_1
+          |> String.graphemes()
+          |> Enum.filter(fn letter ->
+               String.contains?(ruck_2, letter) and
+               String.contains?(ruck_3, letter)
+             end)
+          |> Enum.uniq()
+        case common_letters do
+          [] -> 0
+          _ -> Enum.at(common_letters, 0) |> priority_score()
+        end
+      end) |> Enum.sum()
   end
 
+  # need to refactor this. There's probably a mapping I can do if I know the ASCII values for a and A.
   def priority_score(char) do
     case char do
       "a" -> 1
@@ -92,5 +108,11 @@ defmodule AdventOfCode.Day03 do
         {first_half, second_half}
       end)
     {:ok, parsed_rucksacks}
+  end
+
+  def parse_groups(input) do
+    {:ok, lines, _, _, _, _} = lines_parser(input)
+    groups = Enum.chunk_every(lines, 3)
+    {:ok, groups}
   end
 end

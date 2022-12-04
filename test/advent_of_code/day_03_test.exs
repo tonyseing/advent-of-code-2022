@@ -14,12 +14,19 @@ defmodule AdventOfCode.Day03Test do
     assert result == 72
   end
 
-  @tag :skip
   test "part2" do
-    input = nil
+    input =
+      """
+      vJrwpWtwJgWrhcsFMMfFFhFp
+      jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+      PmmdzqPrVvPwwTWBwg
+      wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+      ttgJtRGJQctTZtZT
+      CrZsJsPPZsGzwwsLwLmpwMDw
+      """
     result = part2(input)
 
-    assert result
+    assert result == 70
   end
 
   test "priority_score" do
@@ -37,5 +44,22 @@ defmodule AdventOfCode.Day03Test do
       """
     rucksacks = parse_rucksacks(input)
     assert rucksacks == {:ok, [{"vJrwpW", "twJWrh"}, {"vJrwpB", "awJTrh"}]}
+  end
+
+  test "parse_groups" do
+    input =
+      """
+      vJrwpWtwJgWrhcsFMMfFFhFp
+      jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+      PmmdzqPrVvPwwTWBwg
+      wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+      ttgJtRGJQctTZtZT
+      CrZsJsPPZsGzwwsLwLmpwMDw
+      """
+    groups = parse_groups(input)
+    assert groups == {:ok,  [
+      ["vJrwpWtwJgWrhcsFMMfFFhFp", "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", "PmmdzqPrVvPwwTWBwg"],
+      ["wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn", "ttgJtRGJQctTZtZT", "CrZsJsPPZsGzwwsLwLmpwMDw"]
+    ]}
   end
 end
