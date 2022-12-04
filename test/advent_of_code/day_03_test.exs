@@ -3,12 +3,15 @@ defmodule AdventOfCode.Day03Test do
 
   import AdventOfCode.Day03
 
-  @tag :skip
   test "part1" do
-    input = nil
+    input =
+      """
+      vJrwpWtwJWrh
+      vJrwpBawJTrB
+      """
     result = part1(input)
 
-    assert result
+    assert result == 72
   end
 
   @tag :skip
@@ -17,5 +20,22 @@ defmodule AdventOfCode.Day03Test do
     result = part2(input)
 
     assert result
+  end
+
+  test "priority_score" do
+    assert priority_score("a") == 1
+    assert priority_score("A") == 27
+    assert priority_score("z") == 26
+    assert priority_score("Z") == 52
+  end
+
+  test "AdventOfCode.Day03Parser.parse_rucksacks splits list of rucksacks into a list of 2-tuples with each compartment as its own string" do
+    input =
+      """
+      vJrwpWtwJWrh
+      vJrwpBawJTrh
+      """
+    rucksacks = parse_rucksacks(input)
+    assert rucksacks == {:ok, [{"vJrwpW", "twJWrh"}, {"vJrwpB", "awJTrh"}]}
   end
 end
