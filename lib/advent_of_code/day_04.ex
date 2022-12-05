@@ -17,8 +17,6 @@ defmodule AdventOfCode.Day04 do
     |> concat(ignore(line_separator_parser))
     |> times(min: 1)
 
-  #lines_parser = string_char_parser |> ignore(string("-")) |> times(min: 1)
-
   defparsec(:range_parser, range_parser)
   defparsec(:tuple_range_parser, tuple_range_parser)
   defparsec(:assignments_parser_helper, assignments_parser)
@@ -46,7 +44,18 @@ defmodule AdventOfCode.Day04 do
     end
   end
 
-  def part2(_args) do
+  def part2(input) do
+    input
+    |> parse_assignments
+    |> case do
+      {:ok, assignments} ->
+        assignments
+        |> Enum.count(fn ([range_1, range_2]) -> ranges_have_overlap(range_1, range_2) end)
+    end
   end
 
+  def ranges_have_overlap(range_1, range_2) do
+    Enum.at(range_1, 0) <= Enum.at(range_2, 0) and Enum.at(range_1, 1) >= Enum.at(range_2, 0)
+    or Enum.at(range_2, 0) <= Enum.at(range_1, 0) and Enum.at(range_2, 1) >= Enum.at(range_1, 0)
+  end
 end
