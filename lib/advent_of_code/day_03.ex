@@ -1,4 +1,5 @@
 defmodule AdventOfCode.Day03 do
+
   import NimbleParsec
 
   string_char_parser = ascii_string([?a..?z, ?A..?Z], min: 1)

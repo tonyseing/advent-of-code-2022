@@ -47,7 +47,7 @@ defmodule AdventOfCode.Day02Test do
       C Z
       """
     )
-    assert match?(plays, {:ok, ["A", "X", "B", "Y", "C", "Z"]})
+    assert match?({:ok, ["A", "X", "B", "Y", "C", "Z"], _, _, _, _}, plays)
   end
 
   test "parse_plays" do

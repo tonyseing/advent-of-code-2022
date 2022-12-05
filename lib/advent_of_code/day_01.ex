@@ -4,7 +4,6 @@ defmodule AdventOfCode.Day01 do
     args
       |> parse_food_list
       |> Enum.map(fn calories_list_for_elf -> Enum.sum(calories_list_for_elf) end)
-      |> IO.inspect(label: "Calories for each elf")
       |> Enum.max
   end
 
