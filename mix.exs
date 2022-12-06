@@ -23,7 +23,8 @@ defmodule AdventOfCode.MixProject do
     [
       {:benchee, "~> 1.0"},
       {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
-      {:nimble_parsec, "~> 1.2"}
+      {:nimble_parsec, "~> 1.2"},
+      {:structure, "~> 0.2.2"}
     ]
   end
 end
